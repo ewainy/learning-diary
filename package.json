@@ -1,0 +1,14 @@
+{
+  "name": "learndiary",
+  "version": "1.0.0",
+  "description": "",
+  "main": "diary.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-init": "^1.3.2"
+  }
+}
