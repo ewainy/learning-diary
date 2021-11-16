@@ -1,4 +1,40 @@
 const main = document.getElementById("main")
+const email = document.getElementById('email')
+const password = document.getElementById('password')
+
+// authentication
+
+// login 
+const login = document.getElementById('login')
+
+login.addEventListener('click', (e) => {
+  e.preventDefault()
+
+  auth.signInWithEmailAndPassword(email.value, password.value)
+.then(cred=> {
+ console.log(cred)
+ 
+})
+
+})
+
+// logout
+const logout = document.getElementById("logout");
+
+logout.addEventListener('click', (e) => {
+  e.preventDefault()
+
+auth.signOut().then(() => {
+  console.log("User logged out")
+
+})
+
+//clear input fields on logout
+email.value = null;
+password.value = null;
+
+})
+
 
 ///////// real time update 
 database.collection('diary').onSnapshot(snapshot => {
@@ -13,6 +49,8 @@ database.collection('diary').onSnapshot(snapshot => {
       } //else if (change.type == 'modified') 
   });
 });
+
+
 /// render diary entries from firebase database
 function renderDiary(doc) {
 
@@ -50,8 +88,6 @@ deleteDiv.setAttribute('class', 'delete')
 deleteDiv.textContent = "Delete"
 container.appendChild(deleteDiv)
 
-
-
 // delete event listener remove from database
 deleteDiv.addEventListener('click', deleted);
   function deleted (e) {
@@ -64,19 +100,18 @@ deleteDiv.addEventListener('click', deleted);
   }
 }
 
-
-
-// select button and add eventlistener
-//button//
+// select add new entry button and add eventlistener
 let createForm = document.getElementById('createForm');
     createForm.addEventListener('click', newEntry);
-    //to stop user creating multiple forms
+
+//to stop user creating multiple forms
  createForm.addEventListener('click', hide)
   function hide () {
     createForm.disabled = true
     createForm.style.visibility = "hidden"
     console.log('Event: hide button')
 }
+
 // FORM SECTION ////////////////////////////////////////////////////////
  function newEntry (){
     console.log('Event: Run function to create form')
@@ -147,7 +182,7 @@ formbutton.setAttribute("value", "Submit");
 x.addEventListener('click', closeForm);
 x.addEventListener('click',reappear)
 
-//form button event listeners ////////
+//form button event listeners
 // save data to database from front end input
 formbutton.addEventListener('click', addToDatabase)
 function addToDatabase () {
